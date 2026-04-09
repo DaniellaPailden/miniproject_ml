@@ -1,0 +1,41 @@
+This study will utilize a supervised machine learning approach to conduct a comparative analysis of several classification algorithms for predicting road accident severity using the UK Road Accident dataset.
+
+\subsection{Exploratory Data Analysis}
+
+Exploratory Data Analysis (EDA) will first be conducted to assess data quality and identify underlying patterns in the dataset. This stage will include examining the dataset dimensions, feature data types, and the frequency of missing values across all variables. The target variable, \texttt{Accident\_Severity}, will also be analyzed to determine the extent of class imbalance. In addition, relationships between predictor variables and the target variable will be explored through visualizations such as bar charts, density plots, and descriptive statistics tables for numerical features.
+
+\subsection{Data Preprocessing}
+
+Data preprocessing will be done to prepare the dataset for machine learning. First, irrelevant or non-predictive columns will be removed. In particular, \texttt{Unnamed: 0} and \texttt{Accident\_Index} will be excluded because they function only as identifiers and do not provide meaningful contextual information about accident conditions.
+
+Columns with extremely high values of missing data will be considered for removal, as they are unlikely to contribute reliable information to the model. Categorical variables with a moderate number of missing values will be replaced with a placeholder category such as \textit{``Unknown''} or \textit{``Missing''}. For numerical variables with missing values, median imputation will be applied, as it is less sensitive to outliers and preserves the central tendency of the data.
+
+The \texttt{Date} column will also be considered for removal. This decision is justified by the presence of other variables that already capture temporal information relevant to accident occurrence, such as \texttt{Day\_of\_Week}, \texttt{Time}, and \texttt{Year}, as well as environmental indicators like \texttt{Light\_Conditions} and \texttt{Weather\_Conditions}.
+
+Since many of the predictors are categorical, categorical encoding will be applied before model training. Nominal variables will be transformed using one-hot encoding, while ordinal variables will be handled through label or ordinal encoding where a hierarchy exists. Numerical variables will be scaled using \texttt{StandardScaler} to ensure uniform feature magnitude.
+
+\subsection{Handling Class Imbalance}
+
+Upon initial examination of the dataset, the target variable \texttt{Accident\_Severity} exhibits class imbalance, showing that severity level 3 is the dominant class, while severity level 1 is much less frequent. As such, the following strategies will be considered to prevent model bias:
+
+\begin{itemize}
+    \item Utilizing algorithms that support a \texttt{class\_weight} parameter, such as Logistic Regression, Random Forest, and Support Vector Machine, where higher penalties are assigned to misclassifications involving minority classes.
+    \item Implementing random undersampling of the majority class or other balancing strategies.
+\end{itemize}
+
+For later analysis, we will consider evaluating models using the original imbalanced dataset and then repeat the experiments using the strategies mentioned above to analyze how the class imbalance affects model performance.
+
+\subsection{Data Splitting, Validation, and Model Selection}
+
+The dataset will be divided into training and testing sets using a stratified train-test split, with 80\% of the data allocated for training and 20\% reserved for the held-out test set. Within the training set, 5-fold stratified cross-validation will be performed during model development and hyperparameter tuning. This validation strategy is intended to reduce bias, improve the reliability of performance metrics, and help prevent overfitting.
+
+The study will compare several widely used classification machine learning models, including:
+\begin{itemize}
+    \item Logistic Regression
+    \item Naive Bayes
+    \item Decision Tree
+    \item Random Forest
+    \item Support Vector Machine
+\end{itemize}
+
+After training and tuning, the models will be evaluated on the held-out test set. Their performance will then be compared and analyzed using the metrics presented in the \textit{Metrics of Evaluation} section of this proposal.

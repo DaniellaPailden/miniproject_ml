@@ -1,0 +1,10 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{example2024study}
+Author, A., Researcher, B.: An example study on machine learning
+  classification. Journal of Sample Research  \textbf{12}(3),  45--58 (2024)
+
+\end{thebibliography}

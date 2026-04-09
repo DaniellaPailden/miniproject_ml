@@ -1,0 +1,48 @@
+The primary data source for this research is the comprehensive UK government's road safety open data records. The dataset used for this project is a subset uploaded by Dev Ansodariya and sourced through Kaggle. It represents the official reporting system used by police forces across Great Britain to record personal-injury collisions occurring on public highways.
+
+The dataset comprises 1,504,150 individual records and 33 feature columns, spanning historical accident reports from 2005 to 2014. The scope of the system only includes incidents involving personal injury that are reported to the police within 30 days of occurrence. Consequently, the data does not account for damage-only incidents, accidents on private land, or unreported non-fatal collisions. While highly detailed, the dataset represents a subset of all vehicular incidents, focusing specifically on those with legal and medical significance.
+
+The 33 attributes provided in the dataset are categorized as follows:
+\begin{itemize}
+    \item \textbf{Location information:} Longitude, Latitude, Easting/Northing, LSOA
+    \item \textbf{Accident severity:} target variable
+    \item \textbf{Traffic context:} number of vehicles, number of casualties
+    \item \textbf{Temporal information:} date, time, day of week, year
+    \item \textbf{Road information:} road class, road type, speed limit, junction control
+    \item \textbf{Environmental conditions:} light conditions, weather conditions, road surface conditions
+    \item \textbf{Site hazards and conditions:} carriageway hazards, special conditions at site
+    \item \textbf{Administrative information:} police force, local authority district/highway
+    \item \textbf{Response information:} whether a police officer attended the scene
+\end{itemize}
+
+The predictive target for this study is \texttt{Accident\_Severity}. It is important to note a difference identified during the initial data validation phase. While the Kaggle metadata describes the \texttt{Accident\_Severity} variable as being measured on a scale of 1 to 5, upon checking the dataset, it is confirmed that the observations are limited to a 1 to 3 scale.
+
+This 1--3 classification aligns with the latest STATS20 reporting standards, which categorize personal-injury collisions into three distinct tiers of increasing severity:
+\begin{itemize}
+    \item \textbf{Severity 3 (Slight):} Injuries of a minor nature, such as sprains, bruises, or cuts not judged to be severe, or slight shock requiring roadside attention.
+    \item \textbf{Severity 2 (Serious):} Injuries for which the victim is detained in hospital as an ``in-patient,'' or any of the following injuries whether or not they are detained: fractures, concussion, internal injuries, crushings, burns, or severe general shock.
+    \item \textbf{Severity 1 (Fatal):} Cases where death occurs within 30 days of the accident as a result of injuries sustained in the collision.
+\end{itemize}
+
+Initial analysis of the dataset also reveals two significant challenges: class imbalance and missing values.
+
+The distribution of the target variable is heavily skewed toward minor accidents, as detailed in Table~\ref{tab:severity_distribution}.
+
+\begin{table}[h]
+\centering
+\caption{Distribution of accident severity classes in the dataset.}
+\label{tab:severity_distribution}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Severity Level} & \textbf{Count} & \textbf{Percentage (approx.)} \\
+\midrule
+1 (Fatal)   & 19,441   & 1.29\%  \\
+2 (Serious) & 204,504  & 13.59\% \\
+3 (Slight)  & 1,280,205 & 85.11\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This is noted to avoid the problem of possible over-predicting the majority class (\textit{Slight}) while failing to identify the minority classes (\textit{Fatal} and \textit{Serious}).
+
+There are also columns that have high rates of missing values such as \texttt{Carriageway\_Hazards}, \texttt{Special\_Conditions\_at\_Site}, and \texttt{Junction\_Control}. This is also noted so that the methodology can address missing-value handling and possible feature removal.
