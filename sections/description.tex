@@ -1,3 +1,59 @@
-This section should introduce the topic of the study, explain why it is worthwhile to investigate, and discuss the practical problem that the project aims to address. You may also situate the work within related studies and briefly explain how the proposed project builds upon or differs from existing work.
+Road accidents remain one of the leading causes of death and serious injury 
+worldwide. According to the World Health Organization, approximately 1.19 million 
+people die each year as a result of road traffic crashes, with tens of millions 
+more sustaining non-fatal injuries~\cite{who2023roadsafety}. Beyond the human 
+toll, road accidents impose substantial economic burdens on healthcare systems, 
+emergency response services, and transportation infrastructure. A critical 
+operational challenge within road safety management is the timely and accurate 
+assessment of accident severity, that is, whether a reported incident is likely 
+to result in a slight, serious, or fatal injury. Reliable severity prediction has 
+direct practical value: it can inform how emergency responders prioritize 
+dispatch, how traffic authorities allocate road safety budgets, and how 
+policymakers identify high-risk conditions that warrant targeted intervention.
 
-You can use this section to answer questions such as: What is the main topic of the study? Why is it relevant? What real-world value can it provide? How does it connect to previous research?
+Machine learning has emerged as a promising approach for this prediction task. 
+Several studies have applied classification algorithms to road accident datasets 
+with varying degrees of success. Ahmed et al.~\cite{ahmed2023explainable} 
+demonstrated that ensemble models such as Random Forest could identify key 
+contributing factors, including road category and number of vehicles involved, 
+while achieving strong predictive performance on accident severity data. Obasi 
+and Benson~\cite{obasi2023evaluating} conducted a comparative analysis using ten 
+years of UK traffic accident data (2005--2014), evaluating Naive Bayes, Logistic 
+Regression, Random Forest, and Artificial Neural Networks, and reported overall 
+prediction accuracies of up to 87\%. Similarly, Ardakani et 
+al.~\cite{ardakani2023road} applied decision trees, random forest, logistic 
+regression, and Naive Bayes to the same UK dataset, evaluating performance across 
+multiple prediction targets including accident severity, casualty count, and 
+vehicle count. More recently, Mohamad et al.~\cite{mohamad2025thailand} conducted 
+a multi-model comparison across eight classifiers on a large-scale Thai accident 
+dataset, finding that Random Forest consistently outperformed simpler models in 
+separating fatal from non-fatal outcomes.
+
+Despite this growing body of work, a recurring and underaddressed limitation is 
+the treatment of class imbalance. In real-world accident datasets, severe and 
+fatal incidents are vastly outnumbered by minor ones. In the UK dataset used in 
+this study, approximately 85\% of records are classified as slight injuries while 
+fatal accidents account for barely 1.3\% of all cases. When class imbalance is 
+left unaddressed, classifiers tend to inflate overall accuracy by defaulting to 
+the majority class, while performing poorly on the minority classes that carry 
+the greatest safety consequences. Fiorentini and Losa~\cite{fiorentini2020imbalance} 
+reviewed dozens of crash severity prediction studies and found that most 
+overlooked the class imbalance problem entirely, resulting in classifiers that 
+performed well on majority classes while failing to detect the more severe 
+minority cases. Yet few comparative studies evaluate how classifiers perform both 
+with and without explicit imbalance-handling strategies within the same 
+experimental framework.
+
+This study addresses that gap directly. We conduct a systematic comparative 
+analysis of five widely-used classification algorithms, namely Logistic 
+Regression, Naive Bayes, Decision Tree, Random Forest, and Support Vector 
+Machine, applied to the UK Road Accident dataset (2005--2014). The study plans 
+to evaluate each model under two conditions: trained on the original imbalanced 
+data, and trained with imbalance-handling strategies applied. This design allows 
+us to isolate and quantify how much imbalance handling improves each classifier's 
+ability to detect serious and fatal accidents, which are the cases that matter 
+most for emergency response and road safety policy. By providing this direct 
+comparison on a large, well-documented public dataset, this study offers 
+practitioners clearer guidance on which modeling strategies are genuinely 
+reliable for safety-critical severity classification, rather than which simply 
+achieve high accuracy on easy majority-class predictions.
