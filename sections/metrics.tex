@@ -1,10 +1,9 @@
-This section should define the criteria that will be used to evaluate model performance. For classification tasks, common metrics include accuracy, precision, recall, F1-score, and ROC--AUC. You may also justify why certain metrics are more appropriate than others, especially when the dataset is imbalanced.
+To evaluate and compare the performance of the supervised machine learning models, multiple classification and regression metrics will be used to perform a comprehensive evaluation. 
 
-For example, you may discuss the following:
 \begin{itemize}
-    \item Accuracy for overall correctness,
-    \item Precision for minimizing false positives,
-    \item Recall for minimizing false negatives,
-    \item F1-score for balancing precision and recall, and
-    \item ROC--AUC for evaluating separability across thresholds.
+    \item \textbf{Confusion Matrix:} The performance of each model will be visualized using a confusion matrix, which compares actual and predicted classifications. This allows for a detailed analysis of misclassifications, particularly for minority classes.
+    \item \textbf{Accuracy:} Accuracy will be measured as the proportion of correctly classified instances out of the total number of predictions. 
+    \item \textbf{Precision, Recall, F1-Score:} Precision measures the number of correctly predicted positive cases, while recall evaluates the ability of the model to identify all relevant instances. The F1-score provides a balance between precision and recall. 
+    \item \textbf{ROC Curve and AUC (One-vs-Rest Approach):} For multi-class classification, a one-vs-rest approach will be used to plot Receiver Operating Characteristic (ROC) curves. The ability of the model to distinguish across classes will be evaluated using the Area Under the Curve (AUC).
+    \item \textbf{Cross-Validation:} During training, 5-fold stratified cross-validation will be used to ensure robust evaluation. Model stability and generalization performance will be evaluated by reporting the mean and standard deviation of evaluation metrics across folds.
 \end{itemize}
